@@ -1,13 +1,4 @@
-# use a node base image
-FROM node:7-onbuild
-
-# set maintainer
-LABEL maintainer "zeckmalik6@gmail.com"
-
-# set a health check
-HEALTHCHECK --interval=5s \
-            --timeout=5s \
-            CMD curl -f http://15.206.160.114:8080 || exit 1
-
-# tell docker what port to expose
-EXPOSE 8080
+FROM tomcat:8.0
+MAINTAINER hem@devopstechlab.com
+# COPY path-to-your-application-war path-to-webapps-in-docker-tomcat
+COPY webapp/target/webapp.war /usr/local/tomcat/webapps/
